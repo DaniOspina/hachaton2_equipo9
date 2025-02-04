@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         ArrayList<Contacto> agenda = new ArrayList<>();
-        Map<String, Contacto> listaContactos = new HashMap<>();
+        HashMap<String, Contacto> listaContactos = new HashMap<>();
         Scanner scanner = new Scanner(System.in);
         int opcion;
         do {
@@ -32,11 +32,12 @@ public class Main {
                     String apellido = scanner.next();
                     System.out.println("Ingrese el número del contacto");
                     String numero = scanner.next();
-                    Contacto contacto1 = new Contacto(nombre, apellido, numero);
-                    agenda.add(contacto1);
-                    listaContactos.put(nombre, contacto1);
-                    System.out.println("Contacto agregado correctamente.");
+                    Contacto contactoNuevo = new Contacto(nombre, apellido, numero);
+                    if (contactoNuevo.añadirContacto(listaContactos, agenda)) {
+                        System.out.println("El contacto fue Agregado exitosamente");
+                    }
                     break;
+
 
                 case 2:
                     System.out.println("Listar contactos");
