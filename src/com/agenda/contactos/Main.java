@@ -65,10 +65,7 @@ public class Main {
                             }
                         });
                         for (Contacto contacto : agenda) {
-                            System.out.println(" ");
                             System.out.println(contacto.getNombre() + " " + contacto.getApellido() + " - " + contacto.getNumero());
-                            System.out.println(" ");
-
                         }
                     }
                     break;
@@ -107,8 +104,8 @@ public class Main {
                 case 6:
                     Contacto disponibles = new Contacto();
                     disponibles.agendaLlena(agenda);
-                    System.out.print("Espacios disponibles: ");
                     disponibles.espacioLibre(agenda);
+                    System.out.print("Espacios disponibles: ");
 
                     int maxContactos = 10;
                     if (agenda.size() == maxContactos) {
