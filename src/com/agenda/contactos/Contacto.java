@@ -33,7 +33,9 @@ public class Contacto {
     }
 
     public void listarContactos() {
-        System.out.println(nombre + " " + apellido + " - " + numero);
+        System.out.println(nombre );
+        System.out.println("Apellido: " + apellido);
+        System.out.println("Telefono: " + numero);
     }
 
     /**
@@ -73,21 +75,28 @@ public class Contacto {
 
     }
 
-    public void agendaLlena() {
-
+    public void agendaLlena(ArrayList<Contacto> agenda){
+        if(agenda.size() == cantidadMaxima){
+            System.out.println("La agenda esta llena. No tiene espacio disponible.");
+        } else {
+            System.out.println("Aún tiene espacio en la agenda.");
+        }
     }
 
-    public void espaciosLibres() {
-
+    public void espacioLibre(ArrayList<Contacto> agenda){
+        int espacio = cantidadMaxima - agenda.size();
+        System.out.println("Puede agregar" + espacio + " contacto(s).");
     }
 
     public String getNombre() {
+
         return nombre;
     }
 
     public String getApellido() {
         return apellido;
     }
+
 
     public String getNumero() {
         return numero;

@@ -23,12 +23,11 @@ public class Main {
             System.out.println("5. Modificar telefono");
             System.out.println("6. Espacios libres");
             System.out.println("7. Salir");
-
             System.out.println("Selecciona una opcion del menu: ");
-
 
             opcion = scanner.nextInt();
             scanner.nextLine();
+
             switch (opcion) {
                 case 1:
                     System.out.println("Ingrese el nombre del contacto");
@@ -45,25 +44,7 @@ public class Main {
 
                 case 2:
                     System.out.println("Listar contactos");
-                    if (agenda.isEmpty()) {
-                        System.out.println("No hay contactos guardados.");
-                    } else {
-                        // Ordenar contactos alfabéticamente por nombre y apellido
-                        Collections.sort(agenda, new Comparator<Contacto>() {
-                            @Override
-                            public int compare(Contacto c1, Contacto c2) {
-                                int nombreCompare = c1.getNombre().compareToIgnoreCase(c2.getNombre());
-                                if (nombreCompare == 0) {
-                                    return c1.getApellido().compareToIgnoreCase(c2.getApellido());
-                                } else {
-                                    return nombreCompare;
-                                }
-                            }
-                        });
-                        for (Contacto contacto : agenda) {
-                            System.out.println(contacto.getNombre() + " " + contacto.getApellido() + " - " + contacto.getNumero());
-                        }
-                    }
+
                     break;
 
                 case 3:
@@ -74,7 +55,7 @@ public class Main {
                     String nombreApellido = nombre + apellido;
                     Contacto contactoInfo = listaContactos.get(nombreApellido);
                     if (contactoInfo != null) {
-                        System.out.println("El número de " + contactoInfo.getNombre() + " es: " + contactoInfo.getNumero());
+                        System.out.println("El número de " + contactoInfo.getNombre() + " " + contactoInfo.getApellido() + " es: " + contactoInfo.getNumero());
                     } else {
                         System.out.println("Contacto no encontrado.");
                     }
@@ -119,14 +100,15 @@ public class Main {
 
                 case 6:
                     System.out.print("Espacios libres: ");
-                    int maxContactos = 10;
-                    if (agenda.size() == maxContactos) {
-                        System.out.println("La agenda está llena. No tiene espacio disponible.");
-                    } else {
-                        System.out.println("Aún tiene espacio en la agenda.");
-                        int espacio = maxContactos - agenda.size();
-                        System.out.println("Puede agregar " + espacio + " contacto(s).");
-                    }
+
+//                    int maxContactos = 10;
+//                    if (agenda.size() == maxContactos) {
+//                        System.out.println("La agenda está llena. No tiene espacio disponible.");
+//                    } else {
+//                        System.out.println("Aún tiene espacio en la agenda.");
+//                        int espacio = maxContactos - agenda.size();
+//                        System.out.println("Puede agregar " + espacio + " contacto(s).");
+//                    }
                     break;
 
                 case 7:
