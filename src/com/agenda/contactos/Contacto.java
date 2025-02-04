@@ -95,33 +95,37 @@ public class Contacto {
 
 
 
-    public void modificarTelefono(String nombre, String apellido, String nuevoTelefono) {
-
+    public String modificarTelefono(HashMap<String, Contacto> listaContactos, String nuevoNumero) {
+        Contacto contactoEncontrado = listaContactos.get(this.getKey());
+        if (contactoEncontrado != null) {
+            contactoEncontrado.setNumero(nuevoNumero);
+            return  "Número actualizado correctamente";
+        } else {
+            return "Contacto no encontrado.";
+        }
     }
 
-    public void agendaLlena() {
-
+    public String agendaLlena(ArrayList<Contacto> agenda){
+        if(agenda.size() == cantidadMaxima){
+            return "La agenda esta llena. No tiene espacio disponible.";
+        } else {
+            return "Aún tiene espacio en la agenda.";
+        }
     }
 
-    public void espaciosLibres() {
-
+    public String espacioLibre(ArrayList<Contacto> agenda){
+        int espacio = cantidadMaxima - agenda.size();
+        return "Puede agregar" + espacio + " contacto(s).";
     }
+
 
     public String getNombre() {
 
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public String getApellido() {
         return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
     }
 
     public String getNumero() {

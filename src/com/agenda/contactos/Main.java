@@ -93,30 +93,23 @@ public class Main {
                     break;
 
                 case 5:
-                    System.out.println("Modificar teléfono: ");
-                    System.out.println("Ingrese el nombre del contacto");
+                    System.out.println("Modificar teléfono");
+                    System.out.println("Ingrese el nombre del contacto:");
                     nombre = scanner.next().toLowerCase();
-                    System.out.println("Ingrese el apellido del contacto");
+                    System.out.println("Ingrese el apellido del contacto:");
                     apellido = scanner.next().toLowerCase();
-                    String nombreApellido = nombre + apellido;
-                    Contacto contactoModificar = listaContactos.get(nombreApellido);
-                    if (contactoModificar != null) {
-                        System.out.println("Ingrese el nuevo número de teléfono");
-                        String nuevoTelefono = scanner.next();
-                        contactoModificar.setNumero(nuevoTelefono);
-                        System.out.println(" ");
-                        System.out.println("El teléfono ha sido modificado exitosamente.");
-                        System.out.println(" ");
-
-                    } else {
-                        System.out.println(" ");
-                        System.out.println("Contacto no encontrado.");
-                        System.out.println(" ");
-
-                    }
+                    System.out.println("Ingrese el nuevo número de teléfono:");
+                    String nuevoNumero = scanner.next();
+                    Contacto contactoModificar = new Contacto(nombre, apellido, "");
+                    contactoModificar.modificarTelefono(listaContactos, nuevoNumero);
                     break;
+
                 case 6:
+                    Contacto disponibles = new Contacto();
+                    disponibles.agendaLlena(agenda);
                     System.out.print("Espacios disponibles: ");
+                    disponibles.espacioLibre(agenda);
+
                     int maxContactos = 10;
                     if (agenda.size() == maxContactos) {
                         System.out.println(" ");
@@ -146,7 +139,6 @@ public class Main {
                     System.out.println(" ");
                     System.out.println("Opción no válida, intenta de nuevo.");
                     System.out.println(" ");
-
             }
         } while (opcion != 7);
     }
