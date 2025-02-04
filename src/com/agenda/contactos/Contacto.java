@@ -46,13 +46,19 @@ public class Contacto {
             ArrayList<Contacto> agenda
     ) {
         if (listaDeContactos.size() >= cantidadMaxima) {
+            System.out.println(" ");
             System.out.println("Lo siento, la agenda está llena. Te recomiendo borrar algún contacto.");
+            System.out.println(" ");
             return false;
         } else if (this.nombre.isEmpty() || this.apellido.isEmpty()) {
+            System.out.println(" ");
             System.out.println("El nombre y el apellido son campos requeridos.");
+            System.out.println(" ");
             return false;
         } else if (this.existeContacto(listaDeContactos)) {
+            System.out.println(" ");
             System.out.println("El contacto ya existe en tu agenda.");
+            System.out.println(" ");
             return false;
         }
 
