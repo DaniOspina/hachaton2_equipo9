@@ -1,7 +1,5 @@
 package com.agenda.contactos;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class Contacto {
     private String nombre;

@@ -7,7 +7,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Contacto> agenda = new ArrayList<>();
+
+        ArrayList<Contacto> agendaPersonal = new ArrayList<>();
         Map<String, Contacto> listaContactos = new HashMap<>();
         Scanner scanner = new Scanner(System.in);
         int opcion;
@@ -33,18 +34,18 @@ public class Main {
                     System.out.println("Ingrese el número del contacto");
                     String numero = scanner.next();
                     Contacto contacto1 = new Contacto(nombre, apellido, numero);
-                    agenda.add(contacto1);
+                    agendaPersonal.add(contacto1);
                     listaContactos.put(nombre, contacto1);
                     System.out.println("Contacto agregado correctamente.");
                     break;
 
                 case 2:
                     System.out.println("Listar contactos");
-                    if (agenda.isEmpty()){
+                    if (agendaPersonal.isEmpty()){
                         System.out.println("No hay contactos guardados.");
                     }
                     else{
-                        for (Contacto contacto : agenda){
+                        for (Contacto contacto : agendaPersonal){
                             contacto.listarContactos();
                             System.out.println(" ");
                         }
@@ -83,10 +84,18 @@ public class Main {
 
                 case 6:
                     System.out.print("Espacios libres: ");
+                    int maxContactos = 10;
+                    if(agendaPersonal.size() == maxContactos){
+                        System.out.println("La agenda esta llena. No tiene espacio disponible.");
+                    } else {
+                        System.out.println("Aún tiene espacio en la agenda.");
+                        int espacio = maxContactos - agendaPersonal.size();
+                        System.out.println("Puede agregar " + espacio + " contacto(s).");
+                    }
                     break;
 
                 case 7:
-                    System.out.println("¡¡ Vuelve pronto !!");
+                    System.out.println("¡¡Agenda personal cerrada!!");
                     break;
                 default:
                     System.out.println("Opción no válida, intenta de nuevo.");
