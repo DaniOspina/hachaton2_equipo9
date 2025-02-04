@@ -1,10 +1,15 @@
 package com.agenda.contactos;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Contacto {
     private String nombre;
     private String apellido;
     private String numero;
+
+    private static Integer cantidadMaxima = 10;
+
 
     public Contacto() {
     }
@@ -15,41 +20,71 @@ public class Contacto {
         this.numero = numero;
     }
 
-    public void añadirContacto(Contacto c){
-        System.out.println("El contacto ha sido agregado");
+    /**
+     * Metodo creado para crear una key unica del contacto formada
+     * por la concatenacion del nombre y apellido en minuscula
+     */
+    public String getKey() {
+        return nombre.toLowerCase() + apellido.toLowerCase();
     }
 
-    public void existeContacto(Contacto c){
-
+    public boolean existeContacto(HashMap<String, Contacto> listaDeContactos) {
+        return listaDeContactos.containsKey(this.getKey());
     }
 
-    public void listarContactos(){
+    public void listarContactos() {
         System.out.println("Nombre: " + nombre);
         System.out.println("Apellido: " + apellido);
         System.out.println("Telefono: " + numero);
     }
 
-    public void buscarContacto(String nombre){
+    /**
+     * Metodo creado para llevar a cabo proceso de Agregar
+     * un contacto con sus validaciones. El this como tal dentro del metodo esta
+     * haciendo referencia al objeto contacto
+     */
+    public boolean añadirContacto(
+            HashMap<String, Contacto> listaDeContactos,
+            ArrayList<Contacto> agenda
+    ) {
+        if (listaDeContactos.size() >= cantidadMaxima) {
+            System.out.println("Lo siento, la agenda está llena. Te recomiendo borrar algún contacto");
+            return false;
+        } else if (this.nombre.isEmpty() || this.apellido.isEmpty()) {
+            System.out.println("Nombre y Apellido requerido");
+            return false;
+        } else if (this.existeContacto(listaDeContactos)) {
+            System.out.println("Existe");
+            return false;
+        }
+
+        listaDeContactos.put(this.getKey(), this);
+        agenda.add(this);
+        return true;
+    }
+
+    public void buscarContacto(String nombre) {
 
     }
 
-    public void eliminarContacto(Contacto c){
+    public void eliminarContacto(Contacto c) {
 
     }
 
-    public void modificarTelefono(String nombre, String apellido, String nuevoTelefono){
+    public void modificarTelefono(String nombre, String apellido, String nuevoTelefono) {
 
     }
 
-    public void agendaLlena(){
+    public void agendaLlena() {
 
     }
 
-    public void espaciosLibres(){
+    public void espaciosLibres() {
 
     }
 
     public String getNombre() {
+
         return nombre;
     }
 
@@ -72,6 +107,5 @@ public class Contacto {
     public void setNumero(String numero) {
         this.numero = numero;
     }
-
-
 }
+

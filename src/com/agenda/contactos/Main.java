@@ -8,8 +8,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        ArrayList<Contacto> agendaPersonal = new ArrayList<>();
-        Map<String, Contacto> listaContactos = new HashMap<>();
+        ArrayList<Contacto> agenda = new ArrayList<>();
+        HashMap<String, Contacto> listaContactos = new HashMap<>();
         Scanner scanner = new Scanner(System.in);
         int opcion;
         do {
@@ -33,19 +33,20 @@ public class Main {
                     String apellido = scanner.next();
                     System.out.println("Ingrese el número del contacto");
                     String numero = scanner.next();
-                    Contacto contacto1 = new Contacto(nombre, apellido, numero);
-                    agendaPersonal.add(contacto1);
-                    listaContactos.put(nombre, contacto1);
-                    System.out.println("Contacto agregado correctamente.");
+                    Contacto contactoNuevo = new Contacto(nombre, apellido, numero);
+                    if (contactoNuevo.añadirContacto(listaContactos, agenda)) {
+                        System.out.println("El contacto fue Agregado exitosamente");
+                    }
                     break;
+
 
                 case 2:
                     System.out.println("Listar contactos");
-                    if (agendaPersonal.isEmpty()){
+                    if (agenda.isEmpty()){
                         System.out.println("No hay contactos guardados.");
                     }
                     else{
-                        for (Contacto contacto : agendaPersonal){
+                        for (Contacto contacto : agenda){
                             contacto.listarContactos();
                             System.out.println(" ");
                         }
@@ -85,11 +86,11 @@ public class Main {
                 case 6:
                     System.out.print("Espacios libres: ");
                     int maxContactos = 10;
-                    if(agendaPersonal.size() == maxContactos){
+                    if(agenda.size() == maxContactos){
                         System.out.println("La agenda esta llena. No tiene espacio disponible.");
                     } else {
                         System.out.println("Aún tiene espacio en la agenda.");
-                        int espacio = maxContactos - agendaPersonal.size();
+                        int espacio = maxContactos - agenda.size();
                         System.out.println("Puede agregar " + espacio + " contacto(s).");
                     }
                     break;
