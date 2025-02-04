@@ -37,8 +37,6 @@ public class Main {
                         System.out.println("El contacto fue Agregado exitosamente");
                     }
                     break;
-
-
                 case 2:
                     System.out.println("Listar contactos");
                     if (agenda.isEmpty()){
@@ -51,41 +49,43 @@ public class Main {
                         }
                     }
                     break;
-
                 case 3:
+                    System.out.println("Buscar Contacto");
                     System.out.println("Ingrese el nombre del contacto");
                     nombre = scanner.next().toLowerCase();
                     System.out.println("Ingrese el apellido del contacto");
                     apellido = scanner.next().toLowerCase();
-                    String nombreApellido = (nombre + apellido);
-                    Contacto contactoInfo = listaContactos.get(nombreApellido);
-                    if (contactoInfo != null) {
-                        System.out.println("El número de " + contactoInfo.getNombre() + " es: " + contactoInfo.getNumero());
-                    } else {
-                        System.out.println("Contacto no encontrado.");
-                    }
+                    Contacto buscar = new Contacto(nombre, apellido, "");
+                    buscar.buscarContacto(listaContactos);
                     break;
-
                 case 4:
                     System.out.println("Eliminar contacto");
                     System.out.println("Ingrese el nombre del contacto");
                     nombre = scanner.next().toLowerCase();
                     System.out.println("Ingrese el apellido del contacto");
                     apellido = scanner.next().toLowerCase();
-                    nombreApellido = (nombre + apellido);
-                    Contacto contactoNombre = listaContactos.get(nombreApellido);
+                    Contacto contactoEliminar = new Contacto(nombre, apellido, "");
+                    contactoEliminar.eliminarContacto(listaContactos, agenda);
+                    break;
+                case 5:
+                    System.out.println("Modificar teléfono: ");
+                    System.out.println("Ingrese el nombre del contacto");
+                    nombre = scanner.next().toLowerCase();
+                    System.out.println("Ingrese el apellido del contacto");
+                    apellido = scanner.next().toLowerCase();
+                    String nombreApellido = nombre + apellido;
+                    Contacto contactoModificar = listaContactos.get(nombreApellido);
 
-                    if (contactoNombre != null) {
-                        agenda.remove(contactoNombre);
-                        System.out.println("Contacto eliminado.");
+                    if (contactoModificar != null) {
+                        System.out.println("Ingrese el nuevo número de teléfono:");
+                        String nuevoNumero = scanner.next();
+                        contactoModificar.setNumero(nuevoNumero);
+                        System.out.println("Número actualizado correctamente.");
                     } else {
-                        System.out.println("No es posible eliminar un contacto no encontrado.");
+                        System.out.println("Contacto no encontrado.");
                     }
                     break;
 
-                case 5:
-                    System.out.print("Modificar telefono: ");
-                    break;
 
                 case 6:
                     System.out.print("Espacios libres: ");

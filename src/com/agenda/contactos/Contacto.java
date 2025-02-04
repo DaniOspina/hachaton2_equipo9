@@ -61,13 +61,33 @@ public class Contacto {
         return true;
     }
 
-    public void buscarContacto(String nombre) {
-
+    public String buscarContacto(HashMap<String, Contacto> listaContactos) {
+        Contacto contactoInfo = listaContactos.get(this.getKey());
+        if (contactoInfo != null) {
+            String resultado = "El número de " + this.nombre + " es: " + contactoInfo.getNumero();
+            System.out.println(resultado);
+            return resultado;
+        } else {
+            String mensaje = "Contacto no encontrado.";
+            System.out.println(mensaje);
+            return mensaje;
+        }
     }
 
-    public void eliminarContacto(Contacto c) {
-
+    public boolean eliminarContacto(HashMap<String, Contacto> listaContactos, ArrayList<Contacto> agenda) {
+        Contacto contactoEncontrado = listaContactos.get(this.getKey());
+        if (contactoEncontrado != null) {
+            agenda.remove(contactoEncontrado);
+            listaContactos.remove(this.getKey());
+            System.out.println("Contacto eliminado.");
+            return true;
+        } else {
+            System.out.println("No es posible eliminar un contacto no encontrado.");
+            return false;
+        }
     }
+
+
 
     public void modificarTelefono(String nombre, String apellido, String nuevoTelefono) {
 
