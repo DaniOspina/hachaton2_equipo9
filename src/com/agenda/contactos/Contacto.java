@@ -16,6 +16,9 @@ public class Contacto {
         this.apellido = apellido;
         this.numero = numero;
     }
+    public String getKey() {
+        return nombre.toLowerCase()+apellido.toLowerCase();
+    }
 
     public void añadirContacto(Contacto c){
         System.out.println("El contacto ha sido agregado");

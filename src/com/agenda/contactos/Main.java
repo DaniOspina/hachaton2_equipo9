@@ -32,9 +32,9 @@ public class Main {
                     String apellido = scanner.next();
                     System.out.println("Ingrese el número del contacto");
                     String numero = scanner.next();
-                    Contacto contacto1 = new Contacto(nombre, apellido, numero);
-                    agenda.add(contacto1);
-                    listaContactos.put(nombre, contacto1);
+                    Contacto contactoAgregado = new Contacto(nombre, apellido, numero);
+                    agenda.add(contactoAgregado);
+                    listaContactos.put(contactoAgregado.getKey(), contactoAgregado);
                     System.out.println("Contacto agregado correctamente.");
                     break;
 
@@ -53,10 +53,11 @@ public class Main {
 
                 case 3:
                     System.out.println("Ingrese el nombre del contacto");
-                    nombre = scanner.next();
-                    // System.out.println("Ingrese el apellido del contacto");
-                    // apellido = scanner.next();
-                    Contacto contactoInfo = listaContactos.get(nombre);
+                    nombre = scanner.next().toLowerCase();
+                    System.out.println("Ingrese el apellido del contacto");
+                    apellido = scanner.next().toLowerCase();
+                    String nombreApellido = (nombre + apellido);
+                    Contacto contactoInfo = listaContactos.get(nombreApellido);
                     if (contactoInfo != null) {
                         contactoInfo.listarContactos();
                     } else {
@@ -65,12 +66,16 @@ public class Main {
                     break;
 
                 case 4:
-                    System.out.print("Eliminar contacto");
+                    System.out.println("Eliminar contacto");
                     System.out.println("Ingrese el nombre del contacto");
-                    nombre = scanner.next();
-                    Contacto contactoNombre = listaContactos.get(nombre);
+                    nombre = scanner.next().toLowerCase();
+                    System.out.println("Ingrese el apellido del contacto");
+                    apellido = scanner.next().toLowerCase();
+                    nombreApellido = (nombre + apellido);
+                    Contacto contactoNombre = listaContactos.get(nombreApellido);
+
                     if (contactoNombre != null) {
-                        listaContactos.remove(nombre);
+                        agenda.remove(contactoNombre);
                         System.out.println("Contacto eliminado.");
                     } else {
                         System.out.println("Contacto no encontrado.");
